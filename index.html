@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillMatch AI — Skill-Based Job Matching Platform (2026 Blueprint)</title>
+  <style>
+    /* ==========================================================================
+       SKILL-BASED JOB MATCHING PLATFORM — ENTERPRISE STYLESHEET
+       Dark Navy Slate (#0f172a) base accented by Tech Teal (#0d9488) & Blue (#2563eb)
+       ========================================================================== */
+    :root {
+      --bg-main: #0b0f19;
+      --bg-panel: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #243248;
+      --bg-elevated: #334155;
+      --border-subtle: #334155;
+      --border-glow: #0d9488;
+      
+      --teal-primary: #0d9488;
+      --teal-light: #14b8a6;
+      --teal-glow: rgba(13, 148, 136, 0.25);
+      
+      --blue-primary: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-glow: rgba(37, 99, 235, 0.25);
+      
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.12);
+      --rose: #f43f5e;
+      --rose-bg: rgba(244, 63, 94, 0.12);
+      
+      --text-white: #f8fafc;
+      --text-slate-200: #e2e8f0;
+      --text-slate-300: #cbd5e1;
+      --text-slate-400: #94a3b8;
+      --text-slate-500: #64748b;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-slate-200);
+      font-family: var(--font-family);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container constraints */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header & Navigation Bar */
+    header {
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.25rem;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-white);
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, var(--teal-primary), var(--blue-primary));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px var(--teal-glow);
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      background: rgba(13, 148, 136, 0.2);
+      color: var(--teal-light);
+      border: 1px solid rgba(13, 148, 136, 0.4);
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-slate-400);
+    }
+
+    .header-stats {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      color: var(--text-slate-300);
+    }
+
+    .stat-pill strong {
+      color: var(--teal-light);
+    }
+
+    /* Multi-Step Workspace Navigation Track */
+    .step-nav-bar {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 0;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .step-track {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: max-content;
+    }
+
+    .step-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-slate-400);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .step-btn:hover {
+      background: var(--bg-card);
+      color: var(--text-slate-200);
+    }
+
+    .step-btn.active {
+      background: var(--bg-card);
+      color: var(--teal-light);
+      border-color: var(--teal-primary);
+      box-shadow: 0 0 12px var(--teal-glow);
+    }
+
+    .step-btn.completed .step-number {
+      background: var(--emerald);
+      color: var(--bg-main);
+    }
+
+    .step-number {
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-elevated);
+      color: var(--text-slate-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .step-btn.active .step-number {
+      background: var(--teal-primary);
+      color: #fff;
+    }
+
+    .step-divider {
+      color: var(--border-subtle);
+      font-size: 0.85rem;
+    }
+
+    /* Workspace Content Panels */
+    main {
+      flex: 1;
+      padding: 2rem 0 4rem 0;
+    }
+
+    .step-panel {
+      display: none;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .step-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Common Card & Layout Utilities */
+    .card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-slate-400);
+      margin-top: 0.25rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-teal { background: var(--teal-glow); color: var(--teal-light); border: 1px solid var(--teal-primary); }
+    .badge-blue { background: var(--blue-glow); color: var(--blue-light); border: 1px solid var(--blue-primary); }
+    .badge-emerald { background: var(--emerald-bg); color: var(--emerald); border: 1px solid rgba(16,185,129,0.3); }
+    .badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,158,11,0.3); }
+    .badge-rose { background: var(--rose-bg); color: var(--rose); border: 1px solid rgba(244,63,94,0.3); }
+
+    /* Interactive Form Elements */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      margin-bottom: 0.4rem;
+    }
+
+    select, input[type="text"], input[type="url"], textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.85rem;
+      color: var(--text-white);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    select:focus, input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
+      border-color: var(--teal-primary);
+      box-shadow: 0 0 0 3px var(--teal-glow);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-teal {
+      background: var(--teal-primary);
+      color: #fff;
+      box-shadow: 0 2px 10px var(--teal-glow);
+    }
+
+    .btn-teal:hover {
+      background: var(--teal-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-blue {
+      background: var(--blue-primary);
+      color: #fff;
+      box-shadow: 0 2px 10px var(--blue-glow);
+    }
+
+    .btn-blue:hover {
+      background: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      border-color: var(--border-subtle);
+      color: var(--text-slate-300);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-elevated);
+      color: var(--text-white);
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Grid Layout Matrices */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    /* Tag Input & Skill Chips */
+    .skill-tags-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+      min-height: 2.5rem;
+      padding: 0.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .skill-card-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .skill-card-chip.verified {
+      border-color: rgba(16, 185, 129, 0.5);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .skill-card-chip .level-badge {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      background: var(--bg-elevated);
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--radius-sm);
+      color: var(--teal-light);
+    }
+
+    .skill-card-chip .delete-tag {
+      background: transparent;
+      border: none;
+      color: var(--text-slate-500);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0 0.2rem;
+    }
+
+    .skill-card-chip .delete-tag:hover {
+      color: var(--rose);
+    }
+
+    /* Range Slider Styling */
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--teal-primary);
+      cursor: pointer;
+    }
+
+    .slider-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--teal-light);
+      min-width: 2.5rem;
+      text-align: right;
+    }
+
+    /* Verification Test Sprint Styles */
+    .timer-banner {
+      background: linear-gradient(90deg, rgba(13, 148, 136, 0.15), rgba(37, 99, 235, 0.15));
+      border: 1px solid rgba(13, 148, 136, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .timer-display {
+      font-family: var(--font-mono);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-white);
+      letter-spacing: 0.05em;
+    }
+
+    .timer-display.warning { color: var(--amber); }
+    .timer-display.critical { color: var(--rose); animation: pulseAlert 1s infinite; }
+
+    @keyframes pulseAlert {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.02); }
+    }
+
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .question-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 0.85rem;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.85rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-label:hover {
+      background: var(--bg-elevated);
+      border-color: var(--text-slate-400);
+    }
+
+    .option-label input[type="radio"] {
+      accent-color: var(--teal-primary);
+    }
+
+    /* Real-Time Match Engine Cards */
+    .job-match-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .job-match-card:hover {
+      border-color: var(--teal-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .job-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .job-capability-vector {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.3;
+    }
+
+    .job-req-id {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--text-slate-400);
+      margin-top: 0.2rem;
+    }
+
+    /* Circular Match Gauge */
+    .match-gauge-circle {
+      width: 4rem;
+      height: 4rem;
+      border-radius: var(--radius-full);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid var(--border-subtle);
+      background: var(--bg-panel);
+    }
+
+    .match-gauge-circle.high { border-color: var(--emerald); color: var(--emerald); box-shadow: 0 0 12px var(--emerald-bg); }
+    .match-gauge-circle.mid { border-color: var(--amber); color: var(--amber); box-shadow: 0 0 12px var(--amber-bg); }
+    .match-gauge-circle.low { border-color: var(--rose); color: var(--rose); box-shadow: 0 0 12px var(--rose-bg); }
+
+    .match-val {
+      font-size: 1rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      line-height: 1;
+    }
+
+    .match-lbl {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.8;
+      margin-top: 0.15rem;
+    }
+
+    .job-skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 1rem 0;
+    }
+
+    .skill-pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .skill-pill.matched {
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .skill-pill.missing {
+      background: var(--rose-bg);
+      color: var(--rose);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+    }
+
+    /* Drag & Drop Resume Simulator */
+    .dropzone {
+      border: 2px dashed var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      background: rgba(15, 23, 42, 0.6);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .dropzone:hover, .dropzone.dragover {
+      border-color: var(--teal-primary);
+      background: rgba(13, 148, 136, 0.05);
+    }
+
+    .dropzone-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: 0 auto 1rem;
+      color: var(--teal-light);
+    }
+
+    .scan-terminal {
+      background: #050811;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--emerald);
+      height: 160px;
+      overflow-y: auto;
+      margin-top: 1.25rem;
+      line-height: 1.6;
+    }
+
+    /* Skill Gap Analysis & 30-Day Roadmap */
+    .gap-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .gap-column {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+    }
+
+    .roadmap-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+      margin-top: 1rem;
+    }
+
+    .roadmap-week {
+      background: var(--bg-card);
+      border-left: 3px solid var(--teal-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1rem 1.25rem;
+      position: relative;
+    }
+
+    .roadmap-week h4 {
+      font-size: 0.95rem;
+      color: var(--teal-light);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .roadmap-week p {
+      font-size: 0.825rem;
+      color: var(--text-slate-300);
+      margin-bottom: 0.5rem;
+    }
+
+    .roadmap-resource {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--blue-light);
+      background: var(--bg-panel);
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+    }
+
+    /* Blind Hiring Anonymized Dossier */
+    .blind-dossier {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      border: 2px solid #e2e8f0;
+      position: relative;
+    }
+
+    .dossier-watermark {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: #0f172a;
+      color: #14b8a6;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+    }
+
+    .dossier-header {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .dossier-id {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .dossier-disclaimer {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .dossier-metric-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 1rem;
+    }
+
+    .dossier-metric-box h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .dossier-metric-box .metric-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0d9488;
+      font-family: var(--font-mono);
+    }
+
+    .dossier-skill-tag {
+      background: #e2e8f0;
+      color: #1e293b;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.55rem;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      margin: 0.2rem;
+    }
+
+    /* Print Styles for Step 7 Anonymized Dossier Export */
+    @media print {
+      body * { visibility: hidden; }
+      header, .step-nav-bar, .nav-actions, footer, .btn-group { display: none !important; }
+      #step-7, #step-7 * { visibility: visible; }
+      #step-7 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        padding: 0;
+      }
+      .blind-dossier {
+        box-shadow: none;
+        border: 1px solid #000;
+        padding: 1.5rem;
+      }
+    }
+
+    /* Persistent Compliance Footer */
+    footer {
+      background: #070a12;
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 0;
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .disclaimer-text {
+      font-size: 0.75rem;
+      color: var(--text-slate-500);
+      line-height: 1.6;
+    }
+
+    .disclaimer-text strong {
+      color: var(--amber);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4, .gap-comparison, .dossier-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-stats { display: none; }
+      .brand-text p { display: none; }
+      .card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand" onclick="switchStep(1)">
+        <div class="brand-icon">
+          <!-- Inline SVG Icon: Capability Vectors -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>SkillMatch <span style="color: var(--teal-light);">AI</span> <span class="brand-badge">2026 Blueprint</span></h1>
+          <p>Skills-First Competency Matching Platform</p>
+        </div>
+      </div>
+
+      <div class="header-stats">
+        <div class="stat-pill">
+          <span>Active Skills:</span>
+          <strong id="header-stat-skills">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Verification:</span>
+          <strong id="header-stat-verified">0 Verified</strong>
+        </div>
+        <div class="stat-pill">
+          <span>Top Compatibility:</span>
+          <strong id="header-stat-match">--%</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Step Navigation Track -->
+  <nav class="step-nav-bar">
+    <div class="container step-track">
+      <button class="step-btn active" id="nav-step-1" onclick="switchStep(1)">
+        <span class="step-number">1</span> Profile Setup
+      </button>
+      <span class="step-divider">&rsaquo;</span>
+      <button class="step-btn" id="nav-step-2" onclick="switchStep(2)">
+        <span class="step-number">2</span> Verification Sprint
+      </button>
+      <span class="step-divider">&rsaquo;</span>
+      <button class="step-btn" id="nav-step-3" onclick="switchStep(3)">
+        <span class="step-number">3</span> Real-Time Matching
+      </button>
+      <span class="step-divider">&rsaquo;</span>
+      <button class="step-btn" id="nav-step-4" onclick="switchStep(4)">
+        <span class="step-number">4</span> Resume ATS Parser
+      </button>
+      <span class="step-divider">&rsaquo;</span>
+      <button class="step-btn" id="nav-step-5" onclick="switchStep(5)">
+        <span class="step-number">5</span> Skill Gap & Roadmap
+      </button>
+      <span class="step-divider">&rsaquo;</span>
+      <button class="step-btn" id="nav-step-6" onclick="switchStep(6)">
+        <span class="step-number">6</span> GitHub Assessment
+      </button>
+      <span class="step-divider">&rsaquo;</span>
+      <button class="step-btn" id="nav-step-7" onclick="switchStep(7)">
+        <span class="step-number">7</span> Blind Dossier
+      </button>
+    </div>
+  </nav>
+
+  <!-- Workspace Step Panels -->
+  <main class="container">
+
+    <!-- ======================================================================= -->
+    <!-- STEP 1: CANDIDATE SKILLS PROFILE SETUP                                  -->
+    <!-- ======================================================================= -->
+    <section id="step-1" class="step-panel active">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Step 1: Candidate Competency Vector Setup
+            </h2>
+            <p class="card-subtitle">Define your core technical domain and self-rate your demonstrated skill proficiencies (1 to 10 scale).</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="loadSampleCandidateProfile()">
+            ⚡ Load Sample High-Impact Profile
+          </button>
+        </div>
+
+        <div class="grid-2">
+          <!-- Primary Domain Selector -->
+          <div class="form-group">
+            <label for="primary-domain">Primary Technical Domain:</label>
+            <select id="primary-domain" onchange="handleDomainChange()">
+              <option value="frontend">Frontend & Responsive Web Architecture</option>
+              <option value="backend">Backend Systems & Distributed Ledgers</option>
+              <option value="datascience">Data Science, ML & Predictive Pipelines</option>
+              <option value="devops">Cloud Infrastructure, DevOps & SRE</option>
+              <option value="fullstack">Full-Stack Product Engineering</option>
+            </select>
+          </div>
+
+          <!-- Quick Skill Tag Recommender -->
+          <div class="form-group">
+            <label>Suggested Domain Competencies (Click to add):</label>
+            <div id="suggested-chips" style="display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 2.4rem;"></div>
+          </div>
+        </div>
+
+        <!-- Custom Skill Input Form -->
+        <div style="background: var(--bg-card); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 1.5rem;">
+          <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.85rem;">Add New Specific Hard Skill</h3>
+          <div class="grid-3" style="align-items: flex-end;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="custom-skill-name">Skill Keyword / Technology:</label>
+              <input type="text" id="custom-skill-name" placeholder="e.g. JavaScript, Docker, SQL, Next.js" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Proficiency Level (1 = Novice, 10 = Architectural Master):</label>
+              <div class="slider-container">
+                <input type="range" id="custom-skill-level" min="1" max="10" value="7" oninput="updateSliderVal(this.value)" />
+                <span class="slider-val" id="slider-val-preview">7/10</span>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-teal" style="width: 100%;" onclick="addCustomSkill()">
+                + Add Competency Tag
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Candidate Skills Matrix -->
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <label style="margin-bottom: 0;">Your Active Capability Vector (<span id="skills-count-label">0 skills</span>):</label>
+            <span style="font-size: 0.75rem; color: var(--text-slate-400);">Amber = Self-Rated &bull; Emerald = Tested & Verified</span>
+          </div>
+          <div class="skill-tags-wrapper" id="active-skills-container">
+            <span style="color: var(--text-slate-500); font-size: 0.8rem; font-style: italic; padding: 0.5rem;">No skills added yet. Click suggestions above, add custom skills, or upload a resume in Step 4.</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: flex-end;">
+          <button class="btn btn-blue" onclick="switchStep(2)">
+            Proceed to Verification Sprint &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- STEP 2: SKILL VERIFICATION TEST (TIMED CODING / LOGIC SPRINT)           -->
+    <!-- ======================================================================= -->
+    <section id="step-2" class="step-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Step 2: Timed Technical Competency Sprint
+            </h2>
+            <p class="card-subtitle">Take this 5-minute technical validation sprint. Scoring 70%+ elevates your self-rated skills to "Verified" status on the matching matrix.</p>
+          </div>
+          <span class="badge badge-teal" id="test-status-badge">Ready to Start</span>
+        </div>
+
+        <!-- Countdown Timer Bar -->
+        <div class="timer-banner">
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--teal-light); letter-spacing: 0.05em;">Sprint Countdown:</span>
+            <div class="timer-display" id="sprint-timer">05:00</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-teal" id="start-test-btn" onclick="startSprintTimer()">
+              🚀 Launch 5-Min Assessment
+            </button>
+            <button class="btn btn-outline" id="submit-test-btn" onclick="submitAssessment()" style="display: none;">
+              ✅ Finalize & Submit Answers
+            </button>
+          </div>
+        </div>
+
+        <!-- Assessment Questions Container -->
+        <div id="test-questions-area" style="opacity: 0.5; pointer-events: none; transition: opacity 0.3s ease;">
+          <div id="questions-list">
+            <!-- Dynamically populated 10 multiple choice questions -->
+          </div>
+        </div>
+
+        <!-- Test Results Banner (Hidden until submission) -->
+        <div id="test-results-banner" style="display: none; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--emerald); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1.5rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--emerald);" id="results-headline">Assessment Passed! (90%)</h3>
+              <p style="font-size: 0.85rem; color: var(--text-slate-300); margin-top: 0.25rem;">Your primary technical capabilities have been certified as <strong>Verified</strong>. Match confidence multiplier increased by +15%.</p>
+            </div>
+            <button class="btn btn-blue" onclick="switchStep(3)">
+              View Real-Time Job Matches &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- STEP 3: REAL-TIME DYNAMIC MATCHING ENGINE                              -->
+    <!-- ======================================================================= -->
+    <section id="step-3" class="step-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+              Step 3: Real-Time Competency Match Engine
+            </h2>
+            <p class="card-subtitle">Opportunities indexed strictly by required capability vectors rather than legacy job titles.</p>
+          </div>
+          <div class="btn-group">
+            <select id="match-filter-select" onchange="filterJobsByMatchThreshold(this.value)" style="width: auto; padding: 0.4rem 0.75rem; font-size: 0.8rem;">
+              <option value="all">Show All Opportunities</option>
+              <option value="high">High Match Only (&ge; 80%)</option>
+              <option value="moderate">Moderate Match (&ge; 60%)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Matched Jobs Grid -->
+        <div class="grid-2" id="jobs-cards-grid">
+          <!-- Dynamically populated job cards with radial match gauges -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- STEP 4: RESUME PARSING SIMULATOR (MOCK FILE UPLOAD)                     -->
+    <!-- ======================================================================= -->
+    <section id="step-4" class="step-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              Step 4: Client-Side ATS Resume Parser Simulator
+            </h2>
+            <p class="card-subtitle">Drop any resume (.txt, .pdf, or paste raw text) to simulate client-side entity extraction that extracts hidden capability tags into your live profile.</p>
+          </div>
+        </div>
+
+        <!-- Drag & Drop Container -->
+        <div class="dropzone" id="resume-dropzone" onclick="document.getElementById('resume-file-input').click()">
+          <input type="file" id="resume-file-input" style="display: none;" accept=".txt,.pdf,.docx,.json" onchange="handleFileSelect(event)" />
+          <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.25rem;">
+            Drag & Drop Resume File Here or <span style="color: var(--teal-light); text-decoration: underline;">Browse Computer</span>
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-slate-400);">Supports .txt, .pdf, or clipboard text. 100% processed securely in client-side memory.</p>
+        </div>
+
+        <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 0.8rem; color: var(--text-slate-400);">Want to test without a file?</span>
+          <button class="btn btn-outline btn-sm" onclick="simulatePresetResumeScan()">
+            ⚡ Scan Pre-Loaded Unstructured Resume (Math Teacher to ML Engineer)
+          </button>
+        </div>
+
+        <!-- Real-Time ATS Terminal Scan Log -->
+        <div class="scan-terminal" id="ats-scan-terminal">
+          &gt; ATS Scanner ready. Awaiting document stream...<br>
+          &gt; Zero external network requests. All parsing executed via client-side regex tokenizers.
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- STEP 5: SKILL GAP ANALYSIS & 2026 ROADMAP                               -->
+    <!-- ======================================================================= -->
+    <section id="step-5" class="step-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              Step 5: Skill Gap Analysis & 2026 Upskilling Roadmap
+            </h2>
+            <p class="card-subtitle">Automated delta matrix between candidate capabilities and target opportunity requirements.</p>
+          </div>
+          <div>
+            <label for="roadmap-job-picker" style="display: inline-block; font-size: 0.75rem; margin-right: 0.5rem;">Target Job:</label>
+            <select id="roadmap-job-picker" onchange="renderGapAnalysisForJob(this.value)" style="width: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem;">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Side-by-Side Comparison -->
+        <div class="gap-comparison">
+          <div class="gap-column">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--emerald); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>&#10003;</span> Demonstrated Strengths (Skills You Have)
+            </h3>
+            <div id="gap-have-skills" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+          </div>
+
+          <div class="gap-column">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--rose); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>&#9888;</span> Missing Capability Gaps (Target Focus)
+            </h3>
+            <div id="gap-missing-skills" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+          </div>
+        </div>
+
+        <!-- 30-Day Targeted Learning Roadmap -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+            <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-white);">
+              📅 30-Day Accelerated Upskilling Protocol (2026 Benchmark)
+            </h3>
+            <span class="badge badge-teal">Production Project Oriented</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-slate-400); margin-bottom: 1.25rem;">Designed to eliminate your detected competency gaps and elevate match compatibility to 100%.</p>
+
+          <div class="roadmap-timeline" id="roadmap-timeline-container">
+            <!-- Dynamically generated weekly milestones based on missing skills -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- STEP 6: GITHUB PORTFOLIO RELEVANCE ASSESSMENT                           -->
+    <!-- ======================================================================= -->
+    <section id="step-6" class="step-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              Step 6: GitHub Portfolio Relevance Assessment
+            </h2>
+            <p class="card-subtitle">Simulate real-time static code repository assessment to measure code velocity, language distribution, and testing discipline against 2026 hiring metrics.</p>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-card); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 1.5rem;">
+          <div class="grid-3" style="align-items: flex-end;">
+            <div class="form-group" style="grid-column: span 2; margin-bottom: 0;">
+              <label for="github-url-input">GitHub Profile or Repository URL:</label>
+              <input type="url" id="github-url-input" value="https://github.com/alex-dev-2026" placeholder="https://github.com/your-username" />
+            </div>
+            <div>
+              <button class="btn btn-teal" style="width: 100%;" onclick="runGitHubCodeAnalysis()">
+                ⚡ Analyze Code Repository Vector
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulated GitHub Assessment Results -->
+        <div id="github-results-panel" style="display: none;">
+          <div class="grid-4" style="margin-bottom: 1.5rem;">
+            <div class="card" style="margin: 0; padding: 1rem; text-align: center;">
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-slate-400); text-transform: uppercase;">Analyzed Repos</span>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-white); font-family: var(--font-mono); margin-top: 0.25rem;">14 Public</div>
+            </div>
+            <div class="card" style="margin: 0; padding: 1rem; text-align: center;">
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-slate-400); text-transform: uppercase;">Commit Frequency</span>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--teal-light); font-family: var(--font-mono); margin-top: 0.25rem;">94th %ile</div>
+            </div>
+            <div class="card" style="margin: 0; padding: 1rem; text-align: center;">
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-slate-400); text-transform: uppercase;">Automated Test Cov</span>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--emerald); font-family: var(--font-mono); margin-top: 0.25rem;">84.5%</div>
+            </div>
+            <div class="card" style="margin: 0; padding: 1rem; text-align: center;">
+              <span style="font-size: 0.7rem; font-weight: 700; color: var(--text-slate-400); text-transform: uppercase;">2026 Market Index</span>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--blue-light); font-family: var(--font-mono); margin-top: 0.25rem;">A+ Rank</div>
+            </div>
+          </div>
+
+          <!-- Language Distribution Matrix -->
+          <div style="background: var(--bg-card); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 1.5rem;">
+            <h4 style="font-size: 0.9rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.75rem;">
+              Repository Language Distribution & Code Footprint:
+            </h4>
+            <div style="height: 12px; border-radius: var(--radius-full); background: #000; overflow: hidden; display: flex; margin-bottom: 0.75rem;">
+              <div style="width: 45%; background: #3178c6;" title="TypeScript 45%"></div>
+              <div style="width: 30%; background: #3572A5;" title="Python 30%"></div>
+              <div style="width: 15%; background: #f1e05a;" title="JavaScript 15%"></div>
+              <div style="width: 10%; background: #e34c26;" title="HTML/CSS 10%"></div>
+            </div>
+            <div style="display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-slate-300); flex-wrap: wrap;">
+              <span><strong style="color: #3178c6;">●</strong> TypeScript: 45%</span>
+              <span><strong style="color: #3572A5;">●</strong> Python: 30%</span>
+              <span><strong style="color: #f1e05a;">●</strong> JavaScript: 15%</span>
+              <span><strong style="color: #e34c26;">●</strong> HTML/CSS: 10%</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-blue" onclick="switchStep(7)">
+              Generate Anonymized "Blind Hiring" Dossier &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- STEP 7: "BLIND HIRING" PROFILE PREVIEW & EXPORT                          -->
+    <!-- ======================================================================= -->
+    <section id="step-7" class="step-panel">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal-light);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Step 7: Blind Hiring Anonymized Dossier
+            </h2>
+            <p class="card-subtitle">Pedigree-free, anti-bias candidate dossier designed to eliminate age, gender, and brand-name employer prejudice in recruiting.</p>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-teal btn-sm" onclick="window.print()">
+              🖨️ Print / Save PDF Dossier
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="copyDossierShareLink()">
+              🔗 Copy Shareable Vector Link
+            </button>
+          </div>
+        </div>
+
+        <!-- Anonymized Dossier Presentation Sheet -->
+        <div class="blind-dossier" id="printable-dossier">
+          <div class="dossier-watermark">Verified Competency Record</div>
+          
+          <div class="dossier-header">
+            <div class="dossier-id" id="dossier-candidate-id">CANDIDATE-VECTOR-#88294</div>
+            <div class="dossier-disclaimer">
+              Protected Anonymized Format &bull; Identity, gender, collegiate pedigree, and past employer titles redacted to enforce skill-first compliance.
+            </div>
+          </div>
+
+          <div class="dossier-grid">
+            <div class="dossier-metric-box">
+              <h5>Primary Domain Vector</h5>
+              <div class="metric-value" style="font-size: 1.15rem;" id="dossier-domain-val">Frontend Engineering</div>
+            </div>
+            <div class="dossier-metric-box">
+              <h5>Skill Verification Test</h5>
+              <div class="metric-value" id="dossier-test-score">90% Verified</div>
+            </div>
+            <div class="dossier-metric-box">
+              <h5>Top Requisition Fit</h5>
+              <div class="metric-value" id="dossier-top-match">92% Compatibility</div>
+            </div>
+            <div class="dossier-metric-box">
+              <h5>GitHub Repository Health</h5>
+              <div class="metric-value">A+ (84% Test Cov)</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.5rem;">
+              Demonstrated Competency Vector:
+            </h4>
+            <div id="dossier-skills-list" style="display: flex; flex-wrap: wrap;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 1.25rem;">
+            <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">
+              Verified Project Artifacts & Capstones:
+            </h4>
+            <ul style="font-size: 0.8rem; color: #334155; padding-left: 1.25rem; line-height: 1.6;">
+              <li>High-performance virtualized data table with Web Workers (Sub-16ms render loop).</li>
+              <li>Distributed caching microservice with Redis token bucket rate-limiter.</li>
+              <li>Automated CI/CD workflow with Docker multi-stage builds and GitHub Actions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Persistent Compliance Footer -->
+  <footer>
+    <div class="container">
+      <p class="disclaimer-text">
+        <strong>Compliance Notice:</strong> Educational prototyping platform. Matching metrics are simulated based on client-side algorithms and do not represent a legal guarantee of employment or automated screening compliance. All evaluations run strictly in local browser memory.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ======================================================================= -->
+  <!-- VANILLA JAVASCRIPT STATE ENGINE & ALGORITHMS                            -->
+  <!-- ======================================================================= -->
+  <script>
+    /**
+     * SkillMatch AI - Client-Side State & Matching Logic
+     * Educational, zero-dependency, self-contained single-file architecture.
+     */
+
+    // 1. GLOBAL STATE DEFINITION
+    const appState = {
+      currentStep: 1,
+      candidate: {
+        id: "CANDIDATE-VECTOR-#" + Math.floor(10000 + Math.random() * 90000),
+        primaryDomain: "frontend",
+        skills: [
+          { name: "JavaScript", level: 8, verified: true },
+          { name: "TypeScript", level: 7, verified: false },
+          { name: "React", level: 8, verified: true },
+          { name: "CSS Flex/Grid", level: 9, verified: true },
+          { name: "Git", level: 7, verified: false }
+        ],
+        testScore: 85,
+        testPassed: true,
+        githubAnalyzed: false
+      },
+      jobs: [
+        {
+          id: "REQ-2026-FT81",
+          capabilityVector: "High-Throughput Reactive UI & State Engine",
+          domain: "frontend",
+          industry: "Fintech Real-Time Trading",
+          location: "Remote (Global)",
+          compensation: "$145,000 - $175,000",
+          requiredSkills: [
+            { name: "JavaScript", minLevel: 7 },
+            { name: "TypeScript", minLevel: 6 },
+            { name: "React", minLevel: 7 },
+            { name: "CSS Flex/Grid", minLevel: 7 }
+          ],
+          niceToHave: ["Next.js", "WebSockets", "Tailwind"]
+        },
+        {
+          id: "REQ-2026-BK42",
+          capabilityVector: "Distributed Event Streaming & Resilient Storage",
+          domain: "backend",
+          industry: "HealthTech Telemetry",
+          location: "Berlin / Hybrid",
+          compensation: "€85,000 - €105,000",
+          requiredSkills: [
+            { name: "Python", minLevel: 7 },
+            { name: "SQL", minLevel: 6 },
+            { name: "Docker", minLevel: 6 },
+            { name: "Git", minLevel: 5 }
+          ],
+          niceToHave: ["Redis", "Kubernetes", "FastAPI"]
+        },
+        {
+          id: "REQ-2026-DS19",
+          capabilityVector: "Multimodal Feature Pipelines & LLM Orchestration",
+          domain: "datascience",
+          industry: "Autonomous Robotics Labs",
+          location: "San Francisco / Remote",
+          compensation: "$160,000 - $195,000",
+          requiredSkills: [
+            { name: "Python", minLevel: 8 },
+            { name: "SQL", minLevel: 7 },
+            { name: "Machine Learning", minLevel: 6 },
+            { name: "Git", minLevel: 6 }
+          ],
+          niceToHave: ["PyTorch", "Docker", "Pandas"]
+        },
+        {
+          id: "REQ-2026-DO93",
+          capabilityVector: "Multi-Region Cloud Kubernetes & CI/CD Posture",
+          domain: "devops",
+          industry: "Green Energy Grid Infrastructure",
+          location: "Remote First",
+          compensation: "$140,000 - $165,000",
+          requiredSkills: [
+            { name: "Docker", minLevel: 8 },
+            { name: "Kubernetes", minLevel: 7 },
+            { name: "Git", minLevel: 7 },
+            { name: "Linux", minLevel: 8 }
+          ],
+          niceToHave: ["Terraform", "AWS", "CI/CD"]
+        }
+      ],
+      timerInterval: null,
+      timeRemaining: 300 // 5 minutes in seconds
+    };
+
+    // 2. DOMAIN SKILL SUGGESTIONS MATRIX
+    const domainSuggestions = {
+      frontend: ["JavaScript", "TypeScript", "React", "CSS Flex/Grid", "Next.js", "Tailwind", "HTML5", "GraphQL", "Web Performance"],
+      backend: ["Python", "Node.js", "SQL", "PostgreSQL", "Docker", "FastAPI", "Redis", "Git", "REST APIs"],
+      datascience: ["Python", "SQL", "Pandas", "NumPy", "Machine Learning", "Scikit-Learn", "PyTorch", "Data Visualization"],
+      devops: ["Docker", "Kubernetes", "Linux", "AWS", "Terraform", "CI/CD", "Git", "Bash", "Prometheus"],
+      fullstack: ["JavaScript", "Python", "React", "Node.js", "SQL", "Docker", "Git", "REST APIs", "Tailwind"]
+    };
+
+    // 3. STEP 2: TEST QUESTIONS BANK
+    const assessmentQuestions = [
+      {
+        q: "1. In modern JavaScript, how does the microtask queue (Promises) behave relative to the macrotask queue (setTimeout)?",
+        options: [
+          "Macrotasks execute immediately ahead of microtasks in the event loop.",
+          "All microtasks in the queue are drained completely before the next macrotask executes.",
+          "They share the exact same queue and execute in FIFO timestamp order.",
+          "Microtasks are handled exclusively by browser Web Workers."
+        ],
+        answer: 1
+      },
+      {
+        q: "2. Which CSS layout paradigm is mathematically ideal for two-dimensional grid coordinate alignment?",
+        options: [
+          "CSS Flexbox with row-wrap enabled.",
+          "CSS Grid Layout (`display: grid`).",
+          "Float-based clearfix containers.",
+          "Inline-block positioning with percentage margins."
+        ],
+        answer: 1
+      },
+      {
+        q: "3. When designing a PostgreSQL schema, what index structure provides O(log n) lookups for standard B-tree range queries?",
+        options: [
+          "Hash Index",
+          "GIN (Generalized Inverted Index)",
+          "Standard B-Tree Index",
+          "BRIN Index"
+        ],
+        answer: 2
+      },
+      {
+        q: "4. In Docker, how do multi-stage builds help optimize production image delivery?",
+        options: [
+          "They allow multiple containers to share the exact same PID namespace.",
+          "They discard build-time compilers and devDependencies, leaving only the minimal runtime artifact.",
+          "They encrypt the underlying Linux kernel layers.",
+          "They automatically compress JSON logs into gzip format."
+        ],
+        answer: 1
+      },
+      {
+        q: "5. What is the primary computational advantage of using Python generators over in-memory lists for large datasets?",
+        options: [
+          "Generators execute in C multithreaded loops without the GIL.",
+          "Generators produce items lazily on-demand, consuming O(1) memory regardless of stream size.",
+          "Generators are automatically cached to disk.",
+          "Generators bypass type checks for 10x CPU speed."
+        ],
+        answer: 1
+      },
+      {
+        q: "6. In Git version control, what does `git merge --ff-only` enforce?",
+        options: [
+          "It forces a merge commit even when branches have not diverged.",
+          "It will only complete the merge if the current HEAD can simply be fast-forwarded without creating a merge commit.",
+          "It squashes all feature branch commits into one single commit.",
+          "It pushes code directly to the remote origin."
+        ],
+        answer: 1
+      },
+      {
+        q: "7. In React 18+, how does automatic batching improve rendering performance?",
+        options: [
+          "It groups multiple state updates within promises and timeouts into a single render pass.",
+          "It forces components to skip DOM reconciliation entirely.",
+          "It stores virtual DOM trees in localStorage.",
+          "It compiles JSX into WebAssembly at runtime."
+        ],
+        answer: 0
+      },
+      {
+        q: "8. What does database ACID isolation level 'Serializable' guarantee against?",
+        options: [
+          "Hardware disk failure.",
+          "Dirty reads, non-repeatable reads, and phantom reads across concurrent transactions.",
+          "Network latency over TCP connections.",
+          "SQL injection vulnerabilities."
+        ],
+        answer: 1
+      },
+      {
+        q: "9. When evaluating an imbalanced classification model in Data Science, why is ROC-AUC preferred over raw Accuracy?",
+        options: [
+          "Accuracy is computationally slower to compute.",
+          "A naive classifier predicting only the majority class can yield high Accuracy while failing to detect minority anomalies.",
+          "ROC-AUC works only with linear regressions.",
+          "Accuracy is not defined for numbers under 100."
+        ],
+        answer: 1
+      },
+      {
+        q: "10. In Kubernetes orchestration, what component is responsible for maintaining the desired replica count of Pods?",
+        options: [
+          "Kube-DNS",
+          "The Deployment / ReplicaSet Controller reconciliation loop",
+          "The Container Network Interface (CNI)",
+          "Etcd key-value datastore directly"
+        ],
+        answer: 1
+      }
+    ];
+
+    // =========================================================================
+    // INITIALIZATION & VIEW-STATE ROUTING
+    // =========================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("%c[SkillMatch Engine] Initializing single-file client-side application...", "color: #0d9488; font-weight: bold;");
+      renderSkillSuggestions();
+      renderActiveSkills();
+      renderTestQuestions();
+      renderJobMatches();
+      updateHeaderStats();
+    });
+
+    /**
+     * Switch current visible step panel in the workspace
+     */
+    function switchStep(stepNumber) {
+      console.log(`[Workspace Router] Switching to Step ${stepNumber}`);
+      appState.currentStep = stepNumber;
+
+      // Update Tab Navigation styling
+      for (let i = 1; i <= 7; i++) {
+        const btn = document.getElementById(`nav-step-${i}`);
+        const panel = document.getElementById(`step-${i}`);
+        if (btn) {
+          btn.classList.toggle("active", i === stepNumber);
+          if (i < stepNumber) btn.classList.add("completed");
+        }
+        if (panel) {
+          panel.classList.toggle("active", i === stepNumber);
+        }
+      }
+
+      // Step-specific refresh triggers
+      if (stepNumber === 3) renderJobMatches();
+      if (stepNumber === 5) renderGapAnalysisForJob();
+      if (stepNumber === 7) renderBlindDossier();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // STEP 1: CANDIDATE SKILLS PROFILE SETUP LOGIC
+    // =========================================================================
+    function handleDomainChange() {
+      const domain = document.getElementById("primary-domain").value;
+      appState.candidate.primaryDomain = domain;
+      renderSkillSuggestions();
+    }
+
+    function renderSkillSuggestions() {
+      const container = document.getElementById("suggested-chips");
+      const domain = appState.candidate.primaryDomain || "frontend";
+      const suggestions = domainSuggestions[domain] || domainSuggestions.frontend;
+
+      container.innerHTML = suggestions.map(skill => {
+        const alreadyAdded = appState.candidate.skills.some(s => s.name.toLowerCase() === skill.toLowerCase());
+        if (alreadyAdded) return "";
+        return `
+          <button class="btn btn-outline btn-sm" onclick="addSuggestedSkill('${skill}')">
+            + ${skill}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function addSuggestedSkill(skillName) {
+      const exists = appState.candidate.skills.some(s => s.name.toLowerCase() === skillName.toLowerCase());
+      if (!exists) {
+        appState.candidate.skills.push({ name: skillName, level: 7, verified: false });
+        renderActiveSkills();
+        renderSkillSuggestions();
+        updateHeaderStats();
+      }
+    }
+
+    function updateSliderVal(val) {
+      document.getElementById("slider-val-preview").textContent = `${val}/10`;
+    }
+
+    function addCustomSkill() {
+      const nameInput = document.getElementById("custom-skill-name");
+      const levelInput = document.getElementById("custom-skill-level");
+      const name = nameInput.value.trim();
+      const level = parseInt(levelInput.value, 10);
+
+      if (!name) {
+        alert("Please enter a skill name.");
+        return;
+      }
+
+      const existingIndex = appState.candidate.skills.findIndex(s => s.name.toLowerCase() === name.toLowerCase());
+      if (existingIndex >= 0) {
+        appState.candidate.skills[existingIndex].level = level;
+      } else {
+        appState.candidate.skills.push({ name: name, level: level, verified: false });
+      }
+
+      nameInput.value = "";
+      renderActiveSkills();
+      renderSkillSuggestions();
+      updateHeaderStats();
+    }
+
+    function removeSkill(skillName) {
+      appState.candidate.skills = appState.candidate.skills.filter(s => s.name.toLowerCase() !== skillName.toLowerCase());
+      renderActiveSkills();
+      renderSkillSuggestions();
+      updateHeaderStats();
+    }
+
+    function renderActiveSkills() {
+      const container = document.getElementById("active-skills-container");
+      const countLabel = document.getElementById("skills-count-label");
+      const skills = appState.candidate.skills;
+
+      countLabel.textContent = `${skills.length} ${skills.length === 1 ? 'skill' : 'skills'}`;
+
+      if (skills.length === 0) {
+        container.innerHTML = `<span style="color: var(--text-slate-500); font-size: 0.8rem; font-style: italic; padding: 0.5rem;">No skills added yet. Click suggestions above, add custom skills, or upload a resume in Step 4.</span>`;
+        return;
+      }
+
+      container.innerHTML = skills.map(s => `
+        <div class="skill-card-chip ${s.verified ? 'verified' : ''}">
+          <span>${s.name}</span>
+          <span class="level-badge">${s.level}/10</span>
+          ${s.verified 
+            ? `<span class="badge badge-emerald" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">&#10003; Verified</span>` 
+            : `<span class="badge badge-amber" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">Self-Rated</span>`
+          }
+          <button class="delete-tag" onclick="removeSkill('${s.name}')" title="Remove">&times;</button>
+        </div>
+      `).join("");
+    }
+
+    function loadSampleCandidateProfile() {
+      appState.candidate.skills = [
+        { name: "JavaScript", level: 9, verified: true },
+        { name: "TypeScript", level: 8, verified: true },
+        { name: "React", level: 9, verified: true },
+        { name: "CSS Flex/Grid", level: 9, verified: true },
+        { name: "Python", level: 7, verified: false },
+        { name: "Docker", level: 6, verified: false },
+        { name: "SQL", level: 7, verified: false },
+        { name: "Git", level: 8, verified: true }
+      ];
+      renderActiveSkills();
+      renderSkillSuggestions();
+      updateHeaderStats();
+      alert("Sample Profile Loaded: High-Impact Full-Stack & Frontend Practitioner.");
+    }
+
+    // =========================================================================
+    // STEP 2: TIMED VERIFICATION SPRINT LOGIC
+    // =========================================================================
+    function renderTestQuestions() {
+      const container = document.getElementById("questions-list");
+      container.innerHTML = assessmentQuestions.map((q, idx) => `
+        <div class="question-card">
+          <div class="question-text">${q.q}</div>
+          <div class="option-group">
+            ${q.options.map((opt, optIdx) => `
+              <label class="option-label">
+                <input type="radio" name="question_${idx}" value="${optIdx}" />
+                <span>${opt}</span>
+              </label>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function startSprintTimer() {
+      const startBtn = document.getElementById("start-test-btn");
+      const submitBtn = document.getElementById("submit-test-btn");
+      const questionsArea = document.getElementById("test-questions-area");
+      const statusBadge = document.getElementById("test-status-badge");
+
+      startBtn.style.display = "none";
+      submitBtn.style.display = "inline-flex";
+      questionsArea.style.opacity = "1";
+      questionsArea.style.pointerEvents = "auto";
+      statusBadge.textContent = "Sprint Active";
+      statusBadge.className = "badge badge-rose";
+
+      appState.timeRemaining = 300;
+      updateTimerDisplay();
+
+      if (appState.timerInterval) clearInterval(appState.timerInterval);
+      appState.timerInterval = setInterval(() => {
+        appState.timeRemaining--;
+        updateTimerDisplay();
+        if (appState.timeRemaining <= 0) {
+          clearInterval(appState.timerInterval);
+          alert("Time's up! Automatically submitting your answers.");
+          submitAssessment();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const timerEl = document.getElementById("sprint-timer");
+      const mins = Math.floor(appState.timeRemaining / 60);
+      const secs = appState.timeRemaining % 60;
+      timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+      timerEl.className = "timer-display";
+      if (appState.timeRemaining <= 60) {
+        timerEl.classList.add("critical");
+      } else if (appState.timeRemaining <= 120) {
+        timerEl.classList.add("warning");
+      }
+    }
+
+    function submitAssessment() {
+      if (appState.timerInterval) clearInterval(appState.timerInterval);
+
+      let correctCount = 0;
+      assessmentQuestions.forEach((q, idx) => {
+        const selected = document.querySelector(`input[name="question_${idx}"]:checked`);
+        if (selected && parseInt(selected.value, 10) === q.answer) {
+          correctCount++;
+        }
+      });
+
+      const scorePct = Math.round((correctCount / assessmentQuestions.length) * 100);
+      appState.candidate.testScore = scorePct;
+      appState.candidate.testPassed = scorePct >= 70;
+
+      // Update skills to verified status if score >= 70
+      if (appState.candidate.testPassed) {
+        appState.candidate.skills.forEach(s => s.verified = true);
+        renderActiveSkills();
+      }
+
+      document.getElementById("submit-test-btn").style.display = "none";
+      const resultsBanner = document.getElementById("test-results-banner");
+      resultsBanner.style.display = "block";
+      document.getElementById("results-headline").textContent = `Assessment Score: ${correctCount}/10 (${scorePct}%) — ${appState.candidate.testPassed ? 'Sprint Passed!' : 'Sprint Complete'}`;
+
+      updateHeaderStats();
+    }
+
+    // =========================================================================
+    // STEP 3: REAL-TIME DYNAMIC MATCHING ENGINE ALGORITHM
+    // =========================================================================
+    /**
+     * Calculates candidate match percentage against a job requisition:
+     * - Must-Have coverage weight: 65%
+     * - Proficiency level delta: 20%
+     * - Verified confidence bonus: 15%
+     */
+    function calculateJobMatch(job) {
+      const candidateSkills = appState.candidate.skills;
+      if (!candidateSkills || candidateSkills.length === 0) return 0;
+
+      const reqSkills = job.requiredSkills;
+      let matchedCount = 0;
+      let proficiencyScoreSum = 0;
+      let verifiedBonusSum = 0;
+
+      reqSkills.forEach(req => {
+        const found = candidateSkills.find(cs => cs.name.toLowerCase() === req.name.toLowerCase());
+        if (found) {
+          matchedCount++;
+          // Proficiency delta (capped at 1.0)
+          const profRatio = Math.min(1.0, found.level / req.minLevel);
+          proficiencyScoreSum += profRatio;
+          if (found.verified) verifiedBonusSum += 1.0;
+        }
+      });
+
+      const coverageRatio = matchedCount / reqSkills.length; // 0.0 to 1.0
+      const profRatioAvg = matchedCount > 0 ? (proficiencyScoreSum / reqSkills.length) : 0;
+      const verifiedRatio = matchedCount > 0 ? (verifiedBonusSum / reqSkills.length) : 0;
+
+      // Composite weighted score
+      const composite = (coverageRatio * 65) + (profRatioAvg * 20) + (verifiedRatio * 15);
+      return Math.min(100, Math.round(composite));
+    }
+
+    function renderJobMatches(filter = "all") {
+      const container = document.getElementById("jobs-cards-grid");
+      const picker = document.getElementById("roadmap-job-picker");
+
+      let jobs = appState.jobs.map(j => ({ ...j, matchScore: calculateJobMatch(j) }));
+      jobs.sort((a, b) => b.matchScore - a.matchScore);
+
+      if (filter === "high") jobs = jobs.filter(j => j.matchScore >= 80);
+      else if (filter === "moderate") jobs = jobs.filter(j => j.matchScore >= 60);
+
+      // Populate Step 5 dropdown
+      if (picker) {
+        picker.innerHTML = appState.jobs.map(j => `
+          <option value="${j.id}">${j.id}: ${j.capabilityVector}</option>
+        `).join("");
+      }
+
+      container.innerHTML = jobs.map(job => {
+        let gaugeClass = "high";
+        if (job.matchScore < 60) gaugeClass = "low";
+        else if (job.matchScore < 80) gaugeClass = "mid";
+
+        // Generate skill pill indicators
+        const skillsPills = job.requiredSkills.map(req => {
+          const hasSkill = appState.candidate.skills.some(cs => cs.name.toLowerCase() === req.name.toLowerCase());
+          return `
+            <span class="skill-pill ${hasSkill ? 'matched' : 'missing'}">
+              ${hasSkill ? '&#10003;' : '&times;'} ${req.name} (&ge;${req.minLevel})
+            </span>
+          `;
+        }).join("");
+
+        return `
+          <div class="job-match-card">
+            <div>
+              <div class="job-header">
+                <div>
+                  <div class="job-capability-vector">${job.capabilityVector}</div>
+                  <div class="job-req-id">${job.id} &bull; ${job.industry} &bull; ${job.location}</div>
+                </div>
+                <div class="match-gauge-circle ${gaugeClass}">
+                  <span class="match-val">${job.matchScore}%</span>
+                  <span class="match-lbl">Match</span>
+                </div>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-slate-400); margin: 0.4rem 0;">
+                Compensation Vector: <strong style="color: var(--teal-light);">${job.compensation}</strong>
+              </p>
+              <div class="job-skills-list">
+                ${skillsPills}
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem;">
+              <button class="btn btn-outline btn-sm" style="flex: 1;" onclick="openJobRoadmap('${job.id}')">
+                Analyze Gap & Roadmap &rarr;
+              </button>
+              <button class="btn btn-teal btn-sm" onclick="instantBlindApply('${job.id}', ${job.matchScore})">
+                Instant Blind Apply
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      updateHeaderStats();
+    }
+
+    function filterJobsByMatchThreshold(val) {
+      renderJobMatches(val);
+    }
+
+    function openJobRoadmap(jobId) {
+      const picker = document.getElementById("roadmap-job-picker");
+      if (picker) picker.value = jobId;
+      switchStep(5);
+      renderGapAnalysisForJob(jobId);
+    }
+
+    function instantBlindApply(jobId, score) {
+      alert(`Anonymized Blind Application dispatched for ${jobId}!\nCandidate ID: ${appState.candidate.id}\nCalculated Match Score: ${score}%\n\nThe hiring manager will review only your verified capability matrix without title or identity bias.`);
+    }
+
+    // =========================================================================
+    // STEP 4: CLIENT-SIDE ATS RESUME PARSER SIMULATOR
+    // =========================================================================
+    function handleFileSelect(evt) {
+      const file = evt.target.files[0];
+      if (!file) return;
+
+      appendTerminalLog(`Selected file: "${file.name}" (${(file.size / 1024).toFixed(1)} KB)`);
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const content = e.target.result;
+        executeTextTokenization(content, file.name);
+      };
+      reader.readAsText(file);
+    }
+
+    // Drag and drop listeners
+    const dropzone = document.getElementById("resume-dropzone");
+    if (dropzone) {
+      dropzone.addEventListener("dragover", (e) => { e.preventDefault(); dropzone.classList.add("dragover"); });
+      dropzone.addEventListener("dragleave", () => { dropzone.classList.remove("dragover"); });
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("dragover");
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleFileSelect({ target: { files: e.dataTransfer.files } });
+        }
+      });
+    }
+
+    function appendTerminalLog(msg) {
+      const term = document.getElementById("ats-scan-terminal");
+      if (term) {
+        const time = new Date().toLocaleTimeString();
+        term.innerHTML += `<div>[${time}] ${msg}</div>`;
+        term.scrollTop = term.scrollHeight;
+      }
+    }
+
+    function executeTextTokenization(rawText, sourceName = "Document") {
+      appendTerminalLog(`Initiating entity extraction on ${sourceName}...`);
+      
+      const vocabulary = [
+        "JavaScript", "TypeScript", "Python", "React", "Node.js", "Docker", "Kubernetes",
+        "SQL", "PostgreSQL", "CSS Flex/Grid", "Git", "AWS", "FastAPI", "Pandas",
+        "Machine Learning", "Linux", "Redis", "Next.js", "GraphQL", "Tailwind"
+      ];
+
+      const found = [];
+      vocabulary.forEach(word => {
+        const regex = new RegExp(`\\b${word.replace('/', '\\/')}\\b`, 'i');
+        if (regex.test(rawText)) {
+          found.push(word);
+        }
+      });
+
+      appendTerminalLog(`Scan complete. ${found.length} hard competencies detected: ${found.join(", ")}`);
+
+      let addedCount = 0;
+      found.forEach(skill => {
+        const exists = appState.candidate.skills.some(s => s.name.toLowerCase() === skill.toLowerCase());
+        if (!exists) {
+          appState.candidate.skills.push({ name: skill, level: 7, verified: false });
+          addedCount++;
+        }
+      });
+
+      appendTerminalLog(`Profile updated with ${addedCount} new competency tags.`);
+      renderActiveSkills();
+      updateHeaderStats();
+    }
+
+    function simulatePresetResumeScan() {
+      const sampleText = `
+        Priya Sharma — Senior Mathematics Instructor transitioning to AI & Data Pipelines.
+        Core Technical Competencies:
+        - 4+ years scripting data analysis pipelines in Python and SQL (PostgreSQL).
+        - Built deep machine learning predictive models using Pandas, NumPy, and Scikit-Learn.
+        - Containerized analytical microservices using Docker and Linux environment scripts.
+        - Version control and collaborative development with Git and GitHub Actions.
+      `;
+      executeTextTokenization(sampleText, "Preset Unstructured Resume (Math Teacher to ML)");
+    }
+
+    // =========================================================================
+    // STEP 5: SKILL GAP ANALYSIS & 2026 ROADMAP GENERATOR
+    // =========================================================================
+    function renderGapAnalysisForJob(jobId) {
+      if (!jobId) {
+        const picker = document.getElementById("roadmap-job-picker");
+        jobId = picker ? picker.value : appState.jobs[0].id;
+      }
+
+      const job = appState.jobs.find(j => j.id === jobId) || appState.jobs[0];
+      const candidateSkills = appState.candidate.skills;
+
+      const haveContainer = document.getElementById("gap-have-skills");
+      const missingContainer = document.getElementById("gap-missing-skills");
+
+      const haveSkills = [];
+      const missingSkills = [];
+
+      job.requiredSkills.forEach(req => {
+        const candSkill = candidateSkills.find(cs => cs.name.toLowerCase() === req.name.toLowerCase());
+        if (candSkill) {
+          haveSkills.push({ ...req, currentLevel: candSkill.level, verified: candSkill.verified });
+        } else {
+          missingSkills.push(req);
+        }
+      });
+
+      // Render Have column
+      haveContainer.innerHTML = haveSkills.length > 0 ? haveSkills.map(s => `
+        <div style="background: var(--bg-panel); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-md); padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-white);">${s.name}</span>
+          <span style="font-size: 0.75rem; color: var(--emerald); font-family: var(--font-mono);">Current: ${s.currentLevel}/10 (Min Req: ${s.minLevel})</span>
+        </div>
+      `).join("") : `<p style="font-size: 0.8rem; color: var(--text-slate-400);">No matching required skills found.</p>`;
+
+      // Render Missing column
+      missingContainer.innerHTML = missingSkills.length > 0 ? missingSkills.map(s => `
+        <div style="background: var(--bg-panel); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: var(--radius-md); padding: 0.65rem 0.85rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--rose);">${s.name}</span>
+          <span style="font-size: 0.75rem; color: var(--rose); font-family: var(--font-mono);">Target Level: &ge; ${s.minLevel}/10</span>
+        </div>
+      `).join("") : `<div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--emerald); border-radius: var(--radius-md); padding: 1rem; color: var(--emerald); font-size: 0.85rem; font-weight: 600;">&#10003; 100% Core Competency Coverage! No critical gaps detected.</div>`;
+
+      // Generate 30-Day Targeted Learning Roadmap
+      renderRoadmapTimeline(missingSkills);
+    }
+
+    function renderRoadmapTimeline(missingSkills) {
+      const timeline = document.getElementById("roadmap-timeline-container");
+      const focusSkill = missingSkills.length > 0 ? missingSkills[0].name : "System Architecture Hardening";
+
+      timeline.innerHTML = `
+        <div class="roadmap-week">
+          <h4>Week 1: Core Fundamentals & Paradigm Mental Models <span>Days 1-7</span></h4>
+          <p>Establish architectural clarity in <strong>${focusSkill}</strong>. Study official documentation, syntax semantics, and memory models.</p>
+          <span class="roadmap-resource">&#128214; Curated Resource: Official ${focusSkill} Specifications & Interactive Sandboxes</span>
+        </div>
+        <div class="roadmap-week">
+          <h4>Week 2: Hands-on Laboratory & Edge-Case Engineering <span>Days 8-15</span></h4>
+          <p>Implement core CRUD operations, concurrency patterns, and automated unit tests. Emulate production error conditions.</p>
+          <span class="roadmap-resource">&#128187; Mini-Project: Resilient Micro-Service with 80%+ Test Coverage</span>
+        </div>
+        <div class="roadmap-week">
+          <h4>Week 3: High-Throughput Optimization & Profiling <span>Days 16-22</span></h4>
+          <p>Profile bundle size, latency bottlenecks, and network overhead. Integrate caching layers (e.g. Redis) and structured logging.</p>
+          <span class="roadmap-resource">&#9874; Lab: Benchmark Sub-100ms P99 Latency under Simulated Load</span>
+        </div>
+        <div class="roadmap-week">
+          <h4>Week 4: Capstone Portfolio Deliverable <span>Days 23-30</span></h4>
+          <p>Deploy a live demonstration artifact to GitHub/Vercel with comprehensive README documentation and CI/CD pipelines.</p>
+          <span class="roadmap-resource">&#128640; Deliverable: Public Repository + Live Vercel Architecture Demo</span>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // STEP 6: GITHUB PORTFOLIO RELEVANCE ASSESSMENT
+    // =========================================================================
+    function runGitHubCodeAnalysis() {
+      const urlInput = document.getElementById("github-url-input").value;
+      if (!urlInput) {
+        alert("Please enter a GitHub repository or profile URL.");
+        return;
+      }
+
+      console.log(`[GitHub Assessment Engine] Parsing code footprint for ${urlInput}...`);
+      const resultsPanel = document.getElementById("github-results-panel");
+      resultsPanel.style.display = "block";
+
+      // Add a bonus verified skill as proof of code inspection
+      const hasGit = appState.candidate.skills.find(s => s.name === "Git");
+      if (hasGit) hasGit.verified = true;
+      else appState.candidate.skills.push({ name: "Git", level: 8, verified: true });
+
+      renderActiveSkills();
+      updateHeaderStats();
+    }
+
+    // =========================================================================
+    // STEP 7: "BLIND HIRING" PROFILE PREVIEW & EXPORT LOGIC
+    // =========================================================================
+    function renderBlindDossier() {
+      document.getElementById("dossier-candidate-id").textContent = appState.candidate.id;
+      document.getElementById("dossier-domain-val").textContent = (appState.candidate.primaryDomain || "Engineering").toUpperCase();
+      document.getElementById("dossier-test-score").textContent = `${appState.candidate.testScore}% Verified`;
+
+      // Find top match
+      const topJob = [...appState.jobs].map(j => ({ ...j, score: calculateJobMatch(j) })).sort((a,b) => b.score - a.score)[0];
+      document.getElementById("dossier-top-match").textContent = `${topJob.score}% (${topJob.id})`;
+
+      // Render Verified Skill Pills on Dossier
+      const container = document.getElementById("dossier-skills-list");
+      container.innerHTML = appState.candidate.skills.map(s => `
+        <span class="dossier-skill-tag">
+          ${s.verified ? '&#10003; ' : ''}${s.name} (${s.level}/10)
+        </span>
+      `).join("");
+    }
+
+    function copyDossierShareLink() {
+      const link = `https://skillmatch-platform.app/vectors/${appState.candidate.id.toLowerCase()}`;
+      navigator.clipboard.writeText(link).then(() => {
+        alert(`Anonymized Share Link copied to clipboard:\n${link}`);
+      }).catch(() => {
+        prompt("Copy this public share link:", link);
+      });
+    }
+
+    // =========================================================================
+    // GLOBAL HEADER STATS SYNCHRONIZER
+    // =========================================================================
+    function updateHeaderStats() {
+      const skills = appState.candidate.skills;
+      const verifiedCount = skills.filter(s => s.verified).length;
+
+      document.getElementById("header-stat-skills").textContent = skills.length;
+      document.getElementById("header-stat-verified").textContent = `${verifiedCount} Verified`;
+
+      const topMatch = appState.jobs.reduce((max, job) => Math.max(max, calculateJobMatch(job)), 0);
+      document.getElementById("header-stat-match").textContent = `${topMatch}%`;
+    }
+  </script>
+</body>
+</html>
